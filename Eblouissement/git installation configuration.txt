@@ -1,0 +1,30 @@
+https://www.youtube.com/watch?v=8r_IErxmoUc
+
+configuration de git apres l'avoir installé:
+click droit sur git bash et changer le dossier de démarrage.
+1-Config:
+git config --global user.name "maalej"
+git config --global user.email "maalejahmed@gmail.com"
+specifier un mot de  pass : akkari82
+ls
+git init // pour initialiser git sur le dossier pointé
+git status 
+
+
+2-creer un ssh sur la machine locale:
+ssh-keygen -t rsa -C "maalejahmed@gmail.com"
+ssh -T git@github.com
+
+
+3- Aller sur GitHub pour créer un nouveau repository avec description du projet:
+recupérer l'information ssh du dossier créer
+aller a git bush et mettre:
+git remote add origin (ssh recupéré)
+git push origin master // pour connecter le dossier local controlé au dossier crée dans la toile 
+si ça marche pas mettre 
+git pull origin master et 
+git push origin master 
+
+
+
+
