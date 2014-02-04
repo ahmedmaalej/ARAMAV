@@ -159,6 +159,16 @@ handles.list_nb_lettre=get(hObject,'String');
 set(handles.nb_lettre_edit4,'String',handles.list_nb_lettre(handles.index_selected_nb_lettre));
 guidata(hObject,handles);
 
+
+% --- Executes on button press in text_color_pushbutton.
+function text_color_pushbutton_Callback(hObject, eventdata, handles)
+% hObject    handle to text_color_pushbutton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles = guidata(gcbo);
+handles.text_color = uisetcolor;
+guidata(hObject,handles);
+
 % --- Executes during object creation, after setting all properties.
 function Nb_Lettres_listbox4_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to Nb_Lettres_listbox4 (see GCBO)
@@ -300,9 +310,13 @@ handles.myText=handles.choix(index);
 Screen('TextFont',handles.wPtr, handles.font);
 Screen('TextSize',handles.wPtr, handles.text_size);
 Screen('TextStyle', handles.wPtr,handles.style);
+if (isfield(handles,'text_color')==0)
+    handles.text_color=[0 0 0];
+end;
+%Screen('TextColor', handles.wPtr,handles.text_color);
 %[nx, ny, bbox] =DrawFormattedText(wPtr, myText, 'center', 'center');
 % Screen('DrawText', wPtr,myText , Screen_center_x-(text_size/2), Screen_center_y-(text_size/2), [0, 0, 0]);
-DrawFormattedText(handles.wPtr, handles.myText, 'center', 'center', 0);
+DrawFormattedText(handles.wPtr, handles.myText, 'center', 'center',handles.text_color);
 Screen('Flip', handles.wPtr);%% rafrechissement
 guidata(hObject, handles);
 
@@ -405,12 +419,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-% --- Executes on button press in text_color_pushbutton.
-function text_color_pushbutton_Callback(hObject, eventdata, handles)
-% hObject    handle to text_color_pushbutton (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
 
 
