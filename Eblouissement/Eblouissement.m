@@ -115,6 +115,23 @@ handles.list_taille=get(hObject,'String');
 set(handles.taille_edit3,'String',handles.list_taille(handles.index_selected_taille));
 guidata(hObject,handles);
 
+% --- Executes on selection change in style_listbox5.
+function style_listbox5_Callback(hObject, eventdata, handles)
+% hObject    handle to style_listbox5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = get(hObject,'String') returns style_listbox5 contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from style_listbox5
+handles = guidata(gcbo);
+handles.index_selected_style=get(hObject,'Value');
+handles.list_style=get(hObject,'String');
+set(handles.style_edit5,'String',handles.list_style(handles.index_selected_style));
+guidata(hObject,handles);
+
+
+
+
 % --- Executes during object creation, after setting all properties.
 function Taille_listbox2_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to Taille_listbox2 (see GCBO)
@@ -269,6 +286,9 @@ indice_NB_lettre=get(handles.Nb_Lettres_listbox4,'Value');
 handles.NB_lettre=str2double(list_NB_lettre(indice_NB_lettre));
 %handles.font=get(handles.font_listbox1,'String');
 %handles.NB_lettre=str2double(get(handles.Nb_Lettres_listbox4,'String'));
+list_Style=[0 1 4 8 32 64];
+indice_style=get(handles.style_listbox5,'Value');
+handles.style=list_Style(indice_style);
 %handles.style=get(handles.style_listbox5,'Value');
 
 %find number of random characters to choose from
@@ -279,7 +299,7 @@ index=round(numRands*rand(1,handles.NB_lettre));
 handles.myText=handles.choix(index);
 Screen('TextFont',handles.wPtr, handles.font);
 Screen('TextSize',handles.wPtr, handles.text_size);
-Screen('TextStyle', handles.wPtr, 0);
+Screen('TextStyle', handles.wPtr, handles.style);
 %[nx, ny, bbox] =DrawFormattedText(wPtr, myText, 'center', 'center');
 % Screen('DrawText', wPtr,myText , Screen_center_x-(text_size/2), Screen_center_y-(text_size/2), [0, 0, 0]);
 DrawFormattedText(handles.wPtr, handles.myText, 'center', 'center', 0);
@@ -471,14 +491,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on selection change in style_listbox5.
-function style_listbox5_Callback(hObject, eventdata, handles)
-% hObject    handle to style_listbox5 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
-% Hints: contents = get(hObject,'String') returns style_listbox5 contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from style_listbox5
 
 % --- Executes during object creation, after setting all properties.
 function style_listbox5_CreateFcn(hObject, eventdata, handles)
