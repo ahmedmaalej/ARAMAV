@@ -275,7 +275,7 @@
                         % hObject    handle to afficher (see GCBO)
                         % eventdata  reserved - to be defined in a future version of MATLAB
                         % handles    structure with handles and user data (see GUIDATA)
-
+                        handles = guidata(gcbo);
                     [handles.myText,handles.font,handles.style,handles.text_size,handles.NB_lettre]=...
                         getParameters(handles.Taille_listbox2,handles.font_listbox1,handles.Nb_Lettres_listbox4,handles.style_listbox5,handles.choix);
 
@@ -285,7 +285,7 @@
                         %Screen('TextColor', handles.wPtr,handles.text_color);
                         %[nx, ny, bbox] =DrawFormattedText(wPtr, myText, 'center', 'center');
                         % Screen('DrawText', wPtr,myText , Screen_center_x-(text_size/2), Screen_center_y-(text_size/2), [0, 0, 0]);
-                        ShowScreen(handles.wPtr,handles.font,handles.text_size,handles.style,handles.text_color,handles.myText)
+                        ShowScreen(handles.wPtr,handles.font,handles.text_size,handles.style,handles.text_color,handles.myText);
                         guidata(hObject, handles);
 
 
@@ -510,9 +510,9 @@ function Lancer_test_pushbutton7_Callback(hObject, eventdata, handles)
 % hObject    handle to Lancer_test_pushbutton7 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-Lancer_Test_Eblouissement()
-
+ handles = guidata(gcbo);
+Lancer_Test_Eblouissement(handles.wPtr,handles.font,handles.text_size,handles.style,handles.text_color,handles.myText)
+guidata(hObject,handles);
 
 
 
